@@ -28,7 +28,9 @@ public class NoteController {
     @PostMapping
     @ApiOperation("Создать заметку")
     public Note createNote(NoteDto noteDto) {
-        return noteRepository.save(convert(noteDto));
+        var note = noteRepository.save(convert(noteDto));
+        setTitle(note);
+        return note;
     }
 
     @GetMapping
